@@ -26,13 +26,16 @@ const Nav = () => {
 			<div className="sm:flex hidden">
 				{session?.user ? (
 					<div className="flex gap-3 md:gap-5">
+						<Link href="/dashboard">
+							Dashboard
+						</Link>
 						<Link href="/new-todo">
 							New Todo
 						</Link>
 
 						<button
 							type="button"
-							onClick={signOut}
+							onClick={() => signOut({callbackUrl: 'http://localhost:3000'})}
 							// make this an outlined button with no fill
 							>
 							Sign Out
@@ -86,6 +89,11 @@ const Nav = () => {
 									My Profile
 								</Link>
 								<Link
+									href="/dashboard"
+									onClick={() => setToggleDropDown(false)}>
+									Dashboard
+								</Link>
+								<Link
 									href="/new-todo"
 									onClick={() => setToggleDropDown(false)}>
 									New Todo
@@ -94,7 +102,7 @@ const Nav = () => {
 									type="button"
 									onClick={() => {
 										setToggleDropDown(false);
-										signOut();
+										signOut({callbackUrl: 'http://localhost:3000'});
 									}}
 									className="mt-5 w-full">
 									Sign Out
